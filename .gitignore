@@ -1,0 +1,13 @@
+# macOS junk — never belongs in a repo
+.DS_Store
+
+# Editor / tooling
+.vscode/
+.idea/
+.trunk/
+
+# Node (you don't need it yet, but future-proof)
+node_modules/
+
+# Logs
+*.log
