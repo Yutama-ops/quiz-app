@@ -1,0 +1,33 @@
+/* Minimal starter styles. Make it your own. */
+
+body {
+  font-family: system-ui, sans-serif;
+  background-color: #0f172a;
+  color: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.card {
+  background-color: #1e293b;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+}
+
+button {
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* Task 2: you'll add classes like .correct and .wrong to color answers.
+   Example to get you started:
+
+   .correct { background-color: #16a34a; color: white; }
+   .wrong   { background-color: #dc2626; color: white; }
+*/

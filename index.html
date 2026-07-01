@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="card">
+      <!-- The quiz screen. You'll fill these in with JavaScript. -->
+      <section id="quiz">
+        <h1 id="question">Question goes here</h1>
+
+        <!-- Task 1: create one button per answer inside this div, from JS -->
+        <div id="answers"></div>
+
+        <!-- Task 4: show the running score here -->
+        <p id="score"></p>
+
+        <!-- Task 3: this button loads the next question -->
+        <button id="next" hidden>Next</button>
+      </section>
+
+      <!-- Task 5: the results screen. Hidden until the quiz ends. -->
+      <section id="results" hidden>
+        <h1 id="final-score">You scored X / Y</h1>
+        <p id="best-score"></p>
+        <button id="play-again">Play again</button>
+      </section>
+    </main>
+
+    <!-- Load the data first, then the app. Order matters. -->
+    <script src="./questions.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
