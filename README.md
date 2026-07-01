@@ -93,4 +93,3 @@ Before you say a feature is "done": open the page, click through it, watch it ac
 - Add a timer per question
 - Add categories
 - Pull questions from a free API instead of the local file
-- Deliberately create a **merge conflict** with your brother and resolve it together (ask him to set this up — it's the scariest git skill and the most useful)
