@@ -23,6 +23,7 @@ const scoreEl = document.getElementById("score");
 // per option. QUESTIONS comes from questions.js.
 //
 function renderQuestion() {
+    nextButton.hidden = true;
     selected = false;
     questionEl.textContent = QUESTIONS[index].text;
     answersEl.innerHTML = '';
@@ -42,15 +43,16 @@ renderQuestion(); // => This line is to test out if renderQuestion works or not.
 // ================= TASK 2: handle answer clicks =================
 function checkAnswer(selectedAnswer) {
     buttonEl = document.getElementsByClassName('answerButtons');
+    nextButton.hidden = false;
+    index++;
 }
+
+
 
 // ================= TASK 3: next question =================
 // Show the Next button after an answer is picked. When clicked,
 // currentIndex++ and show the next question. If there are no more
 // questions, call showResults() (Task 5).
-
-// ================= TASK 4: score =================
-// Add 1 to score on a correct answer. Show it in scoreEl.
 
 // ================= TASK 5 & 6 live in the results section =================
 // showResults(): hide #quiz, show #results, fill in the final score,
