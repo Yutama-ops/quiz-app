@@ -10,6 +10,7 @@
 // ---- State: the few facts the app needs to remember ----
 let index = 0; // which question we're on (0 = first)
 let score = 0; // how many correct so far
+let selected = 0; // check if works or not
 
 // ---- Grab the elements from the page once, up top ----
 const questionEl = document.getElementById("question");
@@ -22,6 +23,7 @@ const scoreEl = document.getElementById("score");
 // per option. QUESTIONS comes from questions.js.
 //
 function renderQuestion() {
+    selected = false;
     questionEl.textContent = QUESTIONS[index].text;
     answersEl.innerHTML = '';
     for (let i = 0; i < QUESTIONS[index].options.length; i++) {
@@ -36,10 +38,11 @@ function renderQuestion() {
 }
 
 renderQuestion(); // => This line is to test out if renderQuestion works or not.
+
 // ================= TASK 2: handle answer clicks =================
-// When a button is clicked, check if it was the correct one
-// (compare its index to question.correctIndex). Add a CSS class
-// so it turns green/red. Disable all answer buttons after a choice.
+function checkAnswer(selectedAnswer) {
+    buttonEl = document.getElementsByClassName('answerButtons');
+}
 
 // ================= TASK 3: next question =================
 // Show the Next button after an answer is picked. When clicked,
