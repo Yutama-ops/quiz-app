@@ -64,6 +64,7 @@ function checkAnswer(selectedAnswer) {
         selected = 1;
         nextButton.hidden=false;
         index++;
+        scoreEl.textContent = `${score}/${index}`
     }
 }
 
