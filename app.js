@@ -22,19 +22,28 @@ const scoreEl = document.getElementById("score");
 // Write a function that takes a question and shows its text + a button
 // per option. QUESTIONS comes from questions.js.
 //
+
+nextButton.addEventListener('click', () => {
+    renderQuestion();
+});
+
 function renderQuestion() {
     nextButton.hidden = true;
     selected = false;
-    questionEl.textContent = QUESTIONS[index].text;
-    answersEl.innerHTML = '';
-    for (let i = 0; i < QUESTIONS[index].options.length; i++) {
-        const button = document.createElement('button');
-        button.textContent = QUESTIONS[index].options[i];
-        button.classList.add('answerButtons');
-        button.addEventListener('click', () => {
-            checkAnswer(i)
-        });
-        answersEl.appendChild(button);
+    if (index < QUESTIONS.length) {
+        questionEl.textContent = QUESTIONS[index].text;
+        answersEl.innerHTML = '';
+        for (let i = 0; i < QUESTIONS[index].options.length; i++) {
+            const button = document.createElement('button');
+            button.textContent = QUESTIONS[index].options[i];
+            button.classList.add('answerButtons');
+            button.addEventListener('click', () => {
+                checkAnswer(i)
+            });
+            answersEl.appendChild(button);
+        }
+    } else {
+        showResults();
     }
 }
 
@@ -43,16 +52,21 @@ renderQuestion(); // => This line is to test out if renderQuestion works or not.
 // ================= TASK 2: handle answer clicks =================
 function checkAnswer(selectedAnswer) {
     buttonEl = document.getElementsByClassName('answerButtons');
-    nextButton.hidden = false;
-    index++;
+    if (selected == 0) {
+        for (let i = 0; i < QUESTIONS[index].options.length; i++) {
+            if (i != QUESTIONS[index].correctIndex) {
+                buttonEl[i].style.color = 'red';
+            } else {
+                buttonEl[i].style.color = 'green';
+            }
+        }
+        if (selectedAnswer == QUESTIONS[index].correctIndex) {score++;}
+        selected = 1;
+        nextButton.hidden=false;
+        index++;
+    }
 }
 
-
-
-// ================= TASK 3: next question =================
-// Show the Next button after an answer is picked. When clicked,
-// currentIndex++ and show the next question. If there are no more
-// questions, call showResults() (Task 5).
 
 // ================= TASK 5 & 6 live in the results section =================
 // showResults(): hide #quiz, show #results, fill in the final score,
