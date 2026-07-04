@@ -17,6 +17,8 @@ const questionEl = document.getElementById("question");
 const answersEl = document.getElementById("answers");
 const nextButton = document.getElementById("next");
 const scoreEl = document.getElementById("score");
+const resultBoard = document.getElementById("results");
+
 
 // ================= TASK 1: render one question =================
 // Write a function that takes a question and shows its text + a button
@@ -30,9 +32,10 @@ nextButton.addEventListener('click', () => {
 function renderQuestion() {
     nextButton.hidden = true;
     selected = false;
+    questionEl.innerHTML = '';
+    answersEl.innerHTML = '';
     if (index < QUESTIONS.length) {
         questionEl.textContent = QUESTIONS[index].text;
-        answersEl.innerHTML = '';
         for (let i = 0; i < QUESTIONS[index].options.length; i++) {
             const button = document.createElement('button');
             button.textContent = QUESTIONS[index].options[i];
@@ -66,6 +69,12 @@ function checkAnswer(selectedAnswer) {
         index++;
         scoreEl.textContent = `${score}/${index}`
     }
+}
+
+function showResults() {
+    scoreEl.hidden=true;
+    resultBoard.hidden = false;
+    document.getElementById('final-score').textContent = `You scored ${score}/${index}`;
 }
 
 
