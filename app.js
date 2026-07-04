@@ -15,19 +15,17 @@ let selected = 0; // check if works or not
 // ---- Grab the elements from the page once, up top ----
 const questionEl = document.getElementById("question");
 const answersEl = document.getElementById("answers");
-const nextButton = document.getElementById("next");
 const scoreEl = document.getElementById("score");
+const nextButton = document.getElementById("next");
 const resultBoard = document.getElementById("results");
+document.getElementById('play-again').addEventListener('click', () => {quizReplay()});
+nextButton.addEventListener('click', () => {renderQuestion();});
 
 
 // ================= TASK 1: render one question =================
 // Write a function that takes a question and shows its text + a button
 // per option. QUESTIONS comes from questions.js.
 //
-
-nextButton.addEventListener('click', () => {
-    renderQuestion();
-});
 
 function renderQuestion() {
     nextButton.hidden = true;
@@ -50,7 +48,6 @@ function renderQuestion() {
     }
 }
 
-renderQuestion(); // => This line is to test out if renderQuestion works or not.
 
 // ================= TASK 2: handle answer clicks =================
 function checkAnswer(selectedAnswer) {
@@ -76,6 +73,18 @@ function showResults() {
     resultBoard.hidden = false;
     document.getElementById('final-score').textContent = `You scored ${score}/${index}`;
 }
+
+function quizReplay() {
+    index = 0;
+    score = 0;
+    selected = 0;
+    resultBoard.hidden = true;
+    scoreEl.textContent = '';
+    scoreEl.hidden=false;
+    renderQuestion();
+}
+
+renderQuestion(); // => This line starts the program
 
 
 // ================= TASK 5 & 6 live in the results section =================
