@@ -8,7 +8,7 @@
 //      commit (rule #5: read your own diff).
 
 // ---- State: the few facts the app needs to remember ----
-let currentIndex = 0; // which question we're on (0 = first)
+let index = 0; // which question we're on (0 = first)
 let score = 0; // how many correct so far
 
 // ---- Grab the elements from the page once, up top ----
@@ -21,13 +21,21 @@ const scoreEl = document.getElementById("score");
 // Write a function that takes a question and shows its text + a button
 // per option. QUESTIONS comes from questions.js.
 //
-// function showQuestion(question) {
-//   questionEl.textContent = question.text;
-//   answersEl.innerHTML = ""; // clear old buttons first
-//   // loop over question.options and create a <button> for each,
-//   // append it to answersEl
-// }
+function renderQuestion() {
+    questionEl.textContent = QUESTIONS[index].text;
+    answersEl.innerHTML = '';
+    for (let i = 0; i < QUESTIONS[index].options.length; i++) {
+        const button = document.createElement('button');
+        button.textContent = QUESTIONS[index].options[i];
+        button.classList.add('answerButtons');
+        button.addEventListener('click', () => {
+            checkAnswer(i)
+        });
+        answersEl.appendChild(button);
+    }
+}
 
+renderQuestion(); // => This line is to test out if renderQuestion works or not.
 // ================= TASK 2: handle answer clicks =================
 // When a button is clicked, check if it was the correct one
 // (compare its index to question.correctIndex). Add a CSS class
