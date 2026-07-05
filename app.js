@@ -11,15 +11,19 @@
 let index = 0; // which question we're on (0 = first)
 let score = 0; // how many correct so far
 let selected = 0; // check if works or not
+if (!localStorage.getItem("highScore")) {
+    localStorage.setItem("highScore", 0);
+}
 
 // ---- Grab the elements from the page once, up top ----
 const questionEl = document.getElementById("question");
 const answersEl = document.getElementById("answers");
 const scoreEl = document.getElementById("score");
-const nextButton = document.getElementById("next");
-const resultBoard = document.getElementById("results");
+const nextButtonEl = document.getElementById("next");
+const resultBoardEl = document.getElementById("results");
+const bestScoreEl = document.getElementById('best-score');
 document.getElementById('play-again').addEventListener('click', () => {quizReplay()});
-nextButton.addEventListener('click', () => {renderQuestion();});
+nextButtonEl.addEventListener('click', () => {renderQuestion();});
 
 
 // ================= TASK 1: render one question =================
@@ -28,7 +32,7 @@ nextButton.addEventListener('click', () => {renderQuestion();});
 //
 
 function renderQuestion() {
-    nextButton.hidden = true;
+    nextButtonEl.hidden = true;
     selected = false;
     questionEl.innerHTML = '';
     answersEl.innerHTML = '';
@@ -62,15 +66,19 @@ function checkAnswer(selectedAnswer) {
         }
         if (selectedAnswer == QUESTIONS[index].correctIndex) {score++;}
         selected = 1;
-        nextButton.hidden=false;
+        nextButtonEl.hidden=false;
         index++;
         scoreEl.textContent = `${score}/${index}`
     }
 }
 
 function showResults() {
+    if (localStorage.getItem("highScore") < score) {
+        localStorage.setItem("highScore", score);
+    }
     scoreEl.hidden=true;
-    resultBoard.hidden = false;
+    resultBoardEl.hidden = false;
+    bestScoreEl.textContent = `Highest Score:${localStorage.getItem("highScore")}`;
     document.getElementById('final-score').textContent = `You scored ${score}/${index}`;
 }
 
@@ -78,7 +86,7 @@ function quizReplay() {
     index = 0;
     score = 0;
     selected = 0;
-    resultBoard.hidden = true;
+    resultBoardEl.hidden = true;
     scoreEl.textContent = '';
     scoreEl.hidden=false;
     renderQuestion();
