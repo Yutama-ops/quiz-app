@@ -43,8 +43,19 @@ renderQuestion(); // => This line is to test out if renderQuestion works or not.
 // ================= TASK 2: handle answer clicks =================
 function checkAnswer(selectedAnswer) {
     buttonEl = document.getElementsByClassName('answerButtons');
-    nextButton.hidden = false;
-    index++;
+    if (selected == 0) {
+        for (let i = 0; i < QUESTIONS[index].options.length; i++) {
+            if (i != QUESTIONS[index].correctIndex) {
+                buttonEl[i].style.color = 'red';
+            } else {
+                buttonEl[i].style.color = 'green';
+            }
+        }
+        if (selectedAnswer == QUESTIONS[index].correctIndex) {score++;}
+        selected = 1;
+        nextButton.hidden=false;
+        index++;
+    }
 }
 
 
